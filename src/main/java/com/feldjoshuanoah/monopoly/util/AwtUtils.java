@@ -1,9 +1,8 @@
 package com.feldjoshuanoah.monopoly.util;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
+import javax.imageio.ImageIO;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +17,19 @@ public final class AwtUtils {
      * loading fonts from the resources directory. The key will always be in the
      * format {@code "name.size"}.
      */
-    private static final Map<String, Font> FONT_CACHE = new HashMap<>();
+    private static final Map<Character, BufferedImage> CHARACTERS
+            = new HashMap<>();
+
+    static {
+        for (char c = 'A'; c <= 'Z'; c++) {
+            try {
+                CHARACTERS.put(c, ImageIO.read(AwtUtils.class.getClassLoader()
+                        .getResource("font/regular/" + c + ".png")));
+            } catch (final IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 
     /**
      * Since this is a utility class we don't want any outer class to be able to
@@ -28,36 +39,27 @@ public final class AwtUtils {
     }
 
     /**
-     * Loads a font from the {@code fonts} folder which is located in the
-     * resources directory. Only files that are in the TTF format can be loaded
-     * by this method. Fonts that are loaded will be kept in the
-     * {@link #FONT_CACHE font cache} to reduce the amount of I/O actions when
-     * this method is called twice with the same parameter.
+     * Draws a string with our custom created font. This system is probably not
+     * ideal but works in our use case. It draws a string by drawing the images
+     * of the single characters by hand.
      *
-     * <p>If the font cannot be loaded due to an {@link IOException} (for
-     * example if the file could not be found), this method will return
-     * {@code null}.
-     *
-     * @param  name The name of the font file to load.
-     * @param  size The font size to load, in points (pt).
-     * @return      The loaded font or {@code null} if the font could not be
-     *              loaded.
+     * @param string     The string to draw.
+     * @param x          The x-component of the upper-left corner of the text.
+     * @param y          The y-component of the upper-left corner of the text.
+     * @param graphics2d The graphics context on which to draw.
      */
-    public static Font loadFont(final String name, final float size) {
-        final String cacheKey = name + "." + size;
-        Font font = FONT_CACHE.getOrDefault(cacheKey, null);
-        if (font == null) {
-            try {
-                font = Font.createFont(Font.TRUETYPE_FONT, new File("font/"
-                        + name + ".ttf")).deriveFont(size);
-                GraphicsEnvironment.getLocalGraphicsEnvironment()
-                        .registerFont(font);
-                FONT_CACHE.put(cacheKey, font);
-            } catch (final IOException | FontFormatException exception) {
-                // TODO: We should probably handle these exceptions better.
-                exception.printStackTrace();
+    public static void drawString(final String string, final int x, final int y,
+                                  final Graphics2D graphics2d) {
+        int currentX = x;
+        for (final char character : string.toUpperCase().toCharArray()) {
+            if (character == ' ') {
+                currentX += 2;
+            } else {
+                graphics2d.drawImage(CHARACTERS.get(character), currentX, y,
+                        null);
+                currentX += CHARACTERS.get(character).getWidth();
             }
+            currentX += 1;
         }
-        return font;
     }
 }
