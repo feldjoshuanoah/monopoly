@@ -13,6 +13,11 @@ import java.util.Map;
 public final class AwtUtils {
 
     /**
+     * The pixel length of the space character.
+     */
+    private static final int SPACE_LENGTH = 3;
+
+    /**
      * Holds already loaded fonts to reduce the amount of I/O actions for
      * loading fonts from the resources directory. The key will always be in the
      * format {@code "name.size"}.
@@ -53,13 +58,12 @@ public final class AwtUtils {
         int currentX = x;
         for (final char character : string.toUpperCase().toCharArray()) {
             if (character == ' ') {
-                currentX += 2;
+                currentX += SPACE_LENGTH;
             } else {
-                graphics2d.drawImage(CHARACTERS.get(character), currentX, y,
-                        null);
-                currentX += CHARACTERS.get(character).getWidth();
+                final BufferedImage characterImage = CHARACTERS.get(character);
+                graphics2d.drawImage(characterImage, currentX, y, null);
+                currentX += characterImage.getWidth() + 1;
             }
-            currentX += 1;
         }
     }
 }
