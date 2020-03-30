@@ -18,8 +18,8 @@ public class Railroad extends AbstractProperty {
     /**
      * Creates a new railroad property.
      *
-     * @param name  The name of the property.
-     * @param price The price a player has to pay to buy this property.
+     * @param name  The name of the railroad.
+     * @param price The price a player has to pay to buy this railroad.
      */
     public Railroad(final String name, final int price) {
         super(name, price);
