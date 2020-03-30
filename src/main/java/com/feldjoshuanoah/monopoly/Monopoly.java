@@ -1,5 +1,7 @@
 package com.feldjoshuanoah.monopoly;
 
+import com.feldjoshuanoah.monopoly.property.Property;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,11 @@ public class Monopoly {
     private static final int MAX_PLAYERS = 4;
 
     /**
+     * The properties that the participating players can buy or have bought.
+     */
+    private final List<Property> properties;
+
+    /**
      * The players participating in the game.
      */
     private final List<Player> players;
@@ -22,8 +29,18 @@ public class Monopoly {
     /**
      * Creates a new game.
      */
-    public Monopoly() {
+    private Monopoly() {
+        properties = new ArrayList<>();
         players = new ArrayList<>();
+    }
+
+    /**
+     * Returns the current instance of the class.
+     *
+     * @return The current instance of the class.
+     */
+    public static Monopoly getInstance() {
+        return Singleton.INSTANCE;
     }
 
     /**
@@ -37,5 +54,29 @@ public class Monopoly {
         if (players.size() < MAX_PLAYERS) {
             players.add(new Player(name));
         }
+    }
+
+    /**
+     * Returns the list of properties.
+     *
+     * @return The list of properties.
+     */
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    /**
+     * Helper class to make {@link Monopoly} a singleton. This uses the approach
+     * of Bill Pugh which exploits the fact that if the main class is loaded,
+     * the {@code Singleton} class is not loaded into memory. Only when the
+     * {@link #getInstance()} method is classed, this class gets loaded and
+     * creates the singleton class instance.
+     */
+    private static class Singleton {
+
+        /**
+         * The instance of the main class.
+         */
+        private static final Monopoly INSTANCE = new Monopoly();
     }
 }
