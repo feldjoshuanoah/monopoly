@@ -5,7 +5,7 @@ import com.feldjoshuanoah.monopoly.Player;
 /**
  * A property which a player can buy.
  */
-public abstract class Property {
+public abstract class AbstractProperty {
 
     /**
      * The name of the property.
@@ -28,7 +28,7 @@ public abstract class Property {
      * @param name  The name of the property.
      * @param price The price a player has to pay to buy this property.
      */
-    public Property(final String name, final int price) {
+    public AbstractProperty(final String name, final int price) {
         this.name = name;
         this.price = price;
     }

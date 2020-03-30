@@ -1,6 +1,6 @@
 package com.feldjoshuanoah.monopoly;
 
-import com.feldjoshuanoah.monopoly.property.Property;
+import com.feldjoshuanoah.monopoly.property.AbstractProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Monopoly {
     /**
      * The properties that the participating players can buy or have bought.
      */
-    private final List<Property> properties;
+    private final List<AbstractProperty> properties;
 
     /**
      * The players participating in the game.
@@ -61,7 +61,7 @@ public class Monopoly {
      *
      * @return The list of properties.
      */
-    public List<Property> getProperties() {
+    public List<AbstractProperty> getProperties() {
         return properties;
     }
 

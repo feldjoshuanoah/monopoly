@@ -8,7 +8,7 @@ import com.feldjoshuanoah.monopoly.Monopoly;
  * where {@code b} is the {@link #BASE_RENT} and {@code o} is the amount of
  * railroads owned by the owner of the railroad.
  */
-public class Railroad extends Property {
+public class Railroad extends AbstractProperty {
 
     /**
      * The instance of the main game class.
