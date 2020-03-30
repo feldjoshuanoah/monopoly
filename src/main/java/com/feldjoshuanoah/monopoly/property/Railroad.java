@@ -11,11 +11,6 @@ import com.feldjoshuanoah.monopoly.Monopoly;
 public class Railroad extends AbstractProperty {
 
     /**
-     * The instance of the main game class.
-     */
-    private static final Monopoly INSTANCE = Monopoly.getInstance();
-
-    /**
      * The base rent if the owner just owns one of the four available railroads.
      */
     private static final int BASE_RENT = 25;
@@ -26,7 +21,7 @@ public class Railroad extends AbstractProperty {
      * @param name  The name of the property.
      * @param price The price a player has to pay to buy this property.
      */
-    public Railroad(String name, int price) {
+    public Railroad(final String name, final int price) {
         super(name, price);
     }
 
@@ -44,7 +39,7 @@ public class Railroad extends AbstractProperty {
      */
     @Override
     public int getRent() {
-        return BASE_RENT * (int) Math.pow(2, INSTANCE.getProperties().stream()
+        return BASE_RENT * (int) Math.pow(2, Monopoly.PROPERTIES.stream()
                 .filter(property -> property instanceof Railroad && property
                 .getOwner().equals(getOwner())).count() - 1);
     }

@@ -19,7 +19,7 @@ public class Monopoly {
     /**
      * The properties that the participating players can buy or have bought.
      */
-    private final List<AbstractProperty> properties;
+    public static final List<AbstractProperty> PROPERTIES = new ArrayList<>();
 
     /**
      * The players participating in the game.
@@ -30,7 +30,6 @@ public class Monopoly {
      * Creates a new game.
      */
     private Monopoly() {
-        properties = new ArrayList<>();
         players = new ArrayList<>();
     }
 
@@ -54,15 +53,6 @@ public class Monopoly {
         if (players.size() < MAX_PLAYERS) {
             players.add(new Player(name));
         }
-    }
-
-    /**
-     * Returns the list of properties.
-     *
-     * @return The list of properties.
-     */
-    public List<AbstractProperty> getProperties() {
-        return properties;
     }
 
     /**
