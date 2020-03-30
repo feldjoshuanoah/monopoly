@@ -10,6 +10,11 @@ import com.feldjoshuanoah.monopoly.Monopoly;
 public class Utility extends AbstractProperty {
 
     /**
+     * The default price for the utilities.
+     */
+    private static final int PRICE = 150;
+
+    /**
      * The factor to multiply the amount shown on the dice with if the owner
      * only owns this utility and not the other one as well.
      */
@@ -23,11 +28,10 @@ public class Utility extends AbstractProperty {
     /**
      * Creates a new utility property.
      *
-     * @param name  The name of the utility.
-     * @param price The price a player has to pay to buy this utility.
+     * @param name The name of the utility.
      */
-    public Utility(String name, int price) {
-        super(name, price);
+    public Utility(String name) {
+        super(name, PRICE);
     }
 
     /**

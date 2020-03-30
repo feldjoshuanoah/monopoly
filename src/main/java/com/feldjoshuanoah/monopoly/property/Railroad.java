@@ -11,6 +11,11 @@ import com.feldjoshuanoah.monopoly.Monopoly;
 public class Railroad extends AbstractProperty {
 
     /**
+     * The default price for the railroads.
+     */
+    private static final int PRICE = 200;
+
+    /**
      * The base rent if the owner just owns one of the four available railroads.
      */
     private static final int BASE_RENT = 25;
@@ -18,11 +23,10 @@ public class Railroad extends AbstractProperty {
     /**
      * Creates a new railroad property.
      *
-     * @param name  The name of the railroad.
-     * @param price The price a player has to pay to buy the railroad.
+     * @param name The name of the railroad.
      */
-    public Railroad(final String name, final int price) {
-        super(name, price);
+    public Railroad(final String name) {
+        super(name, PRICE);
     }
 
     /**
