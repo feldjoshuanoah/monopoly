@@ -55,7 +55,7 @@ public class Player {
      *
      * @param amount The amount to add or remove from the bank account.
      */
-    public void modifyBalance(int amount) {
+    public void modifyBalance(final int amount) {
         balance += amount;
     }
 }
