@@ -43,7 +43,7 @@ public class Street extends AbstractProperty {
      *                                  exactly six elements.
      */
     public Street(final String name, final int price, final Group group,
-                  final int[] rents) {
+                  final int... rents) {
         super(name, price);
         if (rents.length != 6) {
             throw new IllegalArgumentException("The length of the rents array "
