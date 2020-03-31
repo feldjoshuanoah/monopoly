@@ -1,5 +1,7 @@
 package com.feldjoshuanoah.monopoly;
 
+import com.feldjoshuanoah.monopoly.exception.InsufficientBalanceException;
+
 /**
  * A player participating in a game.
  */
@@ -51,11 +53,19 @@ public class Player {
     /**
      * Modifies the balance by the given amount. A positive number represents
      * money being added to the bank account while a negative number represents
-     * money being removed from the bank account.
+     * money being removed from the bank account. If the players balance would
+     * go below 0 after the modification is made (obviously only the case for a
+     * negative parameter) an {@link InsufficientBalanceException} is thrown.
      *
      * @param amount The amount to add or remove from the bank account.
+     *
+     * @throws InsufficientBalanceException If the balance would go below 0.
      */
-    public void modifyBalance(final int amount) {
+    public void modifyBalance(final int amount)
+            throws InsufficientBalanceException {
+        if (balance + amount < 0) {
+            throw new InsufficientBalanceException();
+        }
         balance += amount;
     }
 }
