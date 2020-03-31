@@ -2,6 +2,8 @@ package com.feldjoshuanoah.monopoly.property;
 
 import com.feldjoshuanoah.monopoly.Monopoly;
 
+import java.util.Arrays;
+
 /**
  * A street is the most basic of the three property types. It belongs to a
  * specific color group and has different rent prices for different amounts of
@@ -65,7 +67,7 @@ public class Street extends AbstractProperty {
         int rent = rents[houses];
         // If the player owns all of the properties of the color group and the
         // street has no houses built on it yet, the base rent is doubled.
-        if (houses == 0 && Monopoly.PROPERTIES.stream().filter(property ->
+        if (houses == 0 && Arrays.stream(Monopoly.PROPERTIES).filter(property ->
                 property instanceof Street && ((Street) property).getGroup()
                 .equals(group)).noneMatch(property -> property.getOwner()
                 != getOwner())) {

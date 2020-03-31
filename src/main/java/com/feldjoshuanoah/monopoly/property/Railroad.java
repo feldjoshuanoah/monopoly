@@ -2,6 +2,8 @@ package com.feldjoshuanoah.monopoly.property;
 
 import com.feldjoshuanoah.monopoly.Monopoly;
 
+import java.util.Arrays;
+
 /**
  * A railroad is a special type of property of which there are four in the game.
  * The rent of railroads is calculated using the formula {@code rent = b * 2^o},
@@ -43,7 +45,7 @@ public class Railroad extends AbstractProperty {
      */
     @Override
     public int getRent() {
-        return BASE_RENT * (int) Math.pow(2, Monopoly.PROPERTIES.stream()
+        return BASE_RENT * (int) Math.pow(2, Arrays.stream(Monopoly.PROPERTIES)
                 .filter(property -> property instanceof Railroad && property
                 .getOwner().equals(getOwner())).count() - 1);
     }

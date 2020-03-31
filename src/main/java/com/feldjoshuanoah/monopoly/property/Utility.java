@@ -2,6 +2,8 @@ package com.feldjoshuanoah.monopoly.property;
 
 import com.feldjoshuanoah.monopoly.Monopoly;
 
+import java.util.Arrays;
+
 /**
  * A utility is a special type of property where the rent is based on the number
  * of utilities the owner has and the amount shown on the dice of the player
@@ -44,7 +46,7 @@ public class Utility extends AbstractProperty {
      */
     @Override
     public int getRent() {
-        return Monopoly.PROPERTIES.stream().filter(property -> property
+        return Arrays.stream(Monopoly.PROPERTIES).filter(property -> property
                 instanceof Utility && property.getOwner().equals(getOwner()))
                 .count() == 2 ? TWO_FACTOR : ONE_FACTOR;
     }
