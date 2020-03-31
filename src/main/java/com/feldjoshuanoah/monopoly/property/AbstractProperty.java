@@ -23,6 +23,11 @@ public abstract class AbstractProperty {
     private Player owner;
 
     /**
+     * Whether or not the property is currently mortgaged.
+     */
+    private boolean mortgaged;
+
+    /**
      * Creates a new property.
      *
      * @param name  The name of the property.
@@ -60,6 +65,42 @@ public abstract class AbstractProperty {
      */
     public Player getOwner() {
         return owner;
+    }
+
+    /**
+     * Sets the owner of the property. The parameter may not be {@code null}
+     * because a property cannot be sold back to the bank once it has been
+     * bought by a player. If the parameter is {@code null}, an
+     * {@link IllegalArgumentException} is thrown.
+     *
+     * @param owner The owner of the property.
+     *
+     * @throws IllegalArgumentException If the parameter is {@code null}.
+     */
+    public void setOwner(final Player owner) {
+        if (owner == null) {
+            throw new IllegalArgumentException("New owner may not be null.");
+        }
+        this.owner = owner;
+    }
+
+    /**
+     * Returns whether the property is currently mortgaged or not.
+     *
+     * @return {@code true} if the property is currently mortgaged;
+     *         {@code false} otherwise.
+     */
+    public boolean isMortgaged() {
+        return mortgaged;
+    }
+
+    /**
+     * Sets the mortgaged state of the property.
+     *
+     * @param mortgaged Whether the property is mortgaged or not.
+     */
+    public void setMortgaged(final boolean mortgaged) {
+        this.mortgaged = mortgaged;
     }
 
     /**
