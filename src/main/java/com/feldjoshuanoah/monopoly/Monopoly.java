@@ -105,10 +105,4 @@ public class Monopoly {
          */
         private static final Monopoly INSTANCE = new Monopoly();
     }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < PROPERTIES.length; i++) {
-            System.out.println(PROPERTIES[i]);
-        }
-    }
 }
